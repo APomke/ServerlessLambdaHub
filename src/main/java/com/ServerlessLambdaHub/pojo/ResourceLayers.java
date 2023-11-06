@@ -19,6 +19,21 @@ public class ResourceLayers {
   private String version;
   private long creatorId;
   private long updaterId;
-  private java.sql.Timestamp createdAt;
-  private java.sql.Timestamp updatedAt;
+  private String createdAt;
+  private String updatedAt;
+
+  public ResourceLayers(String name, String architecture, String runtimeCompatibility, String remarks, String s3Link, String localAddress, String version, long creatorId, long updaterId, String createdAt, String updatedAt) {
+    this.name = name;
+    this.architecture = architecture;
+    this.runtimeCompatibility = runtimeCompatibility;
+    this.remarks = remarks;
+    this.s3Link = s3Link;
+    this.localAddress = localAddress;
+    this.version = version;
+    this.creatorId = creatorId;
+    this.updaterId = updaterId;
+    this.createdAt = createdAt;
+    this.updatedAt = updatedAt;
+  }
+
 }
