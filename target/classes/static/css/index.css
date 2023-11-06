@@ -1,0 +1,127 @@
+/* 定义字体和背景色 */
+:root {
+    --primary-color: #4a90e2; /* 主题颜色 */
+    --secondary-color: #f5f7fa; /* 辅助颜色 */
+    --text-color: #333; /* 文本颜色 */
+    --header-font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* 应用全局样式 */
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background: var(--secondary-color);
+    color: var(--text-color);
+}
+
+header {
+    background: var(--primary-color);
+    color: white;
+    padding: 2rem;
+    text-align: center;
+    /* 添加简单的入场动画 */
+    animation: fadeInDown 1s ease-out;
+}
+
+/* 动画效果 */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translate3d(0, -100%, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+h1 {
+    margin: 0;
+}
+
+.features {
+    display: flex;
+    justify-content: space-around;
+    padding: 1rem;
+}
+
+.feature {
+    background: white;
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    /* 添加鼠标悬停动画 */
+    transition: transform 0.3s ease-in-out;
+}
+
+.feature:hover {
+    transform: translateY(-5px);
+}
+
+h2 {
+    color: var(--primary-color);
+}
+
+form {
+    max-width: 500px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+label {
+    display: block;
+    margin-top: 1rem;
+}
+
+select {
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    margin-top: 1rem;
+    border: none;
+    background: var(--primary-color);
+    color: white;
+    cursor: pointer;
+    /* 添加过渡效果 */
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: darken(var(--primary-color), 10%);
+}
+
+.output {
+    max-width: 500px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    background: var(--primary-color);
+    color: white;
+}
+
+.selectde {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* 响应式布局 */
+@med

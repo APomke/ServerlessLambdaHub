@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ServerlessLambdaHub</title>
+    <link th:href="@{/css/index.css}" rel="stylesheet">
+</head>
+<body>
+<header>
+    <h1>Welcome to ServerlessLambdaHub</h1>
+    <p>Discover and deploy serverless layers with ease</p>
+</header>
+
+<!--<section class="features">-->
+<!--    <div class="feature">-->
+<!--        <h2>Easy to Use</h2>-->
+<!--        <p>Find and deploy serverless layers in just a few clicks.</p>-->
+<!--    </div>-->
+<!--    <div class="feature">-->
+<!--        <h2>Wide Compatibility</h2>-->
+<!--        <p>Layers compatible with various architectures and runtimes.</p>-->
+<!--    </div>-->
+<!--    <div class="feature">-->
+<!--        <h2>Community-driven</h2>-->
+<!--        <p>Join a vibrant community of developers sharing their layers.</p>-->
+<!--    </div>-->
+<!--</section>-->
+
+<section class="dependency-selection">
+    <h2 class="selectde">Select Dependency</h2>
+    <form>
+        <label for="runtime">Runtime Compatibility:</label>
+        <select id="runtime" name="runtime">
+            <option th:each="runtime : ${runtimeList}"
+                    th:value="${runtime}"
+                    th:text="${runtime}"></option>
+        </select>
+
+
+        <label for="dependency-name">Name:</label>
+        <select id="dependency-name" name="dependency-name">
+            <option th:each="dependencyname : ${dependencyList}"
+                    th:value="${dependencyname}"
+                    th:text="${dependencyname}"></option>
+        </select>
+
+        <label for="architecture">Architecture:</label>
+        <select id="architecture" name="architecture">
+            <option th:each="architecture : ${architectureList}"
+                    th:value="${architecture}"
+                    th:text="${architecture}"></option>
+        </select>
+
+
+        <button type="button" onclick="getLinks()">Get Links</button>
+    </form>
+
+    <div class="output">
+        <h3>Links:</h3>
+        <p id="s3-link"></p>
+        <p id="local-address"></p>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2023 ServerlessLambdaHub. All rights reserved.</p>
+</footer>
+
+<script>
+    function getLinks() {
+        var dependencyName = document.getElementById('dependency-name').value;
+        var architecture = document.getElementById('architecture').value;
+        var runtime = document.getElementById('runtime').value;
+
+        fetch('/getUrl', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                dependencyName: dependencyName,
+                architecture: architecture,
+                runtime: runtime
+            })
+        })
+            .then(response => response.json())
+            .then(data => {
+                var s3Link = data.s3Link;
+                var localAddress = data.localAddress;
+
+                // 更新页面上的链接信息
+                document.getElementById('s3-link').textContent = 'S3 Link: ' + s3Link;
+                document.getElementById('local-address').textContent = 'Local Address: ' + localAddress;
+            })
+            .catch(error => console.error('Error:', error));
+    }
+</script>
+
+</body>
+</html>
